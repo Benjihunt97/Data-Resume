@@ -1,0 +1,81 @@
+:root {
+  --clr-text-dark: #18191E;
+}
+
+/* prefix styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+body {
+  --__graidentStart: 50%;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  
+  background: linear-gradient(
+    to bottom right,
+    #a5f3fc,
+    #22d3ee var(--__graidentStart),
+    #0891b2 
+  );
+  
+  font-family: system-ui;
+  
+  animation-name: test;
+  animation-iteration-count: infinite;
+  animation-duration: 2.5s;
+}
+
+@keyframes shift {
+  25% {
+      --__graidentStart: 70%;
+  }
+  75% {
+      --__gradientStart: 40%;
+  }
+  100% {
+      --__gradientStart: 70%;
+  }
+}
+
+img,
+svg,
+a,
+button,
+input {
+  display: block;
+}
+
+button,
+input {
+  outline: 0;
+  border: 0;
+  background: transparent;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var(--clr-text-dark);
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+/* dark/light theme */
+[data-dark="true"] {
+  background: #020617 !important;
+  color: #d4d4d8 !important;
+}
