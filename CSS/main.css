@@ -1,0 +1,274 @@
+/* theme button and ball*/
+.theme-btn {
+  --__btnWidth: 75px;
+  --__ballSize: 25px;
+  
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  
+  width: var(--__btnWidth);
+  height: calc(var(--__btnWidth) / 2);
+  
+  border-radius: 100vw;
+  background: rgba(155, 155, 155, 0.65);
+  box-shadow: inset 0 0 10px 2px rgba(20, 20, 20, 0.45);
+  z-index: 9;
+}
+
+.theme-ball {
+  position: absolute;
+  top: 50%;
+  left: .5rem;
+  transform: translateY(-50%);
+  
+  width: var(--__ballSize);
+  aspect-ratio: 1;
+  
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 100vw;
+  border: 1.5px solid #020617;
+  
+  transition: 
+    left 400ms linear,
+    background 400ms linear;
+}
+
+.check {
+  width: inherit;
+  height: inherit;
+  opacity: 0;
+}
+
+/* container */
+.container {
+  --__rounded: 1rem;
+  --__padding: 1.5rem;
+  --__shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  display: grid;
+  gap: 1.125rem;
+  
+  width: 80%;
+  max-width: 800px;
+  
+  margin-block: 1.75rem;
+}
+
+/* header-hero */
+.hero {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  padding: var(--__padding);
+  
+  background: #fff;
+  border-radius: var(--__rounded);
+  box-shadow: var(--__shadow);
+}
+
+.hero-img {
+  width: 100px;
+  aspect-ratio: 1;
+  
+  border-radius: 100vw;
+  
+  object-fit: cover;
+}
+
+.hero-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.hero-info {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.hero-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  width: fit-content;
+  margin-left: auto;
+}
+
+.link-item {
+  width: 25px;
+  aspect-ratio: 1;
+  border-radius: 100vw;
+  background: red;
+}
+
+/* main - about me*/
+.about {
+  padding: var(--__padding);
+  
+  background: #fff;
+  border-radius: var(--__rounded);
+  box-shadow: var(--__shadow);
+}
+
+.about-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+
+.about-info {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* skills */
+.skills {
+  display: grid;
+  gap: 1rem;
+  padding: var(--__padding);
+  
+  background: #fff;
+  
+  border-radius: var(--__rounded);
+  box-shadow: var(--__shadow);
+}
+
+.skill-main-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.skill-item {
+  --__barWidth: 0;
+  --__barColor: #d1d5db;
+  --__barText: "";
+  display: flex;
+  align-items: center;
+  
+  width: 100%;
+}
+
+.skill-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.skill-bar {
+  position: relative;
+  
+  width: 60%;
+  height: 10px;
+  
+  margin-left: auto;
+  
+  background: #d1d5db;
+  border-radius: 100vw;
+}
+
+.skill-bar::before,
+.skill-bar::after {
+  position: absolute;
+  transition: all 600ms linear;
+}
+
+.skill-bar::before {
+  content: "";
+  left: 0;
+  top: 0;
+  
+  height: inherit;
+  width: var(--__barWidth);
+  
+  background: var(--__barColor);
+  border-radius: inherit;
+}
+
+.skill-bar::after {
+  display: grid;
+  place-items: center;
+  
+  content: var(--__barText);
+  left: calc(var(--__barWidth) - 30px);
+  top: 50%;
+  transform: translateY(-50%);
+  
+  width: 30px;
+  aspect-ratio: 1;
+  
+  font-size: 0.75rem;
+  
+  background: #fff;
+  border-radius: 100vw;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+
+/* adding animation for the sections */
+.hero,
+.about,
+.skills {
+  position: relative;
+  transition: all 500ms linear;
+}
+.hero:hover,
+.about:hover,
+.skills:hover {
+  transform: scale(1.1);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  z-index: 5;
+}
+
+.skill-bar:hover:after {
+  opacity: 1;
+}
+
+/* screen size tablet change 25rem depending on testing*/
+@media (min-width: 25rem) {
+  .container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .hero {
+    grid-column: 1/3;
+    place-self: start;
+  }
+  
+  .about {
+    grid-row: span 2;
+  }
+  
+  /* theme button */
+  .theme-btn {
+      --__btnWidth: 175px;
+  }
+  
+  .theme-ball {
+    --__ballSize: 60px;
+  }
+}
+
+/* screen sizes desktop */
+@media (min-width: 40rem) {
+  /* container */
+  
+  /* header-hero*/
+  .hero {
+    grid-column: 1/-1;
+    place-self: stretch;
+  }
+  
+  /* skills */
+  .skills {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  
+  /* main-about*/
+  .about {
+    grid-column: 3/-1;
+    grid-row: auto;
+  }
+  }
